@@ -382,10 +382,37 @@ var _bgAudio = new Audio(SOUNDANDSONG);
 _bgAudio.loop   = true;
 _bgAudio.volume = 0.45;
 
-/* Start on first user gesture (browser autoplay policy) */
+/* Web Audio API fallback — plays Happy Birthday melody if mp3 fails to load */
+function _playFallbackMelody() {
+  var ac = new (window.AudioContext || window.webkitAudioContext)();
+  /* [frequency Hz, note duration s, gap after s] */
+  var notes = [
+    [264,0.25,0.05],[264,0.25,0.05],[297,0.5,0.1],[264,0.5,0.1],[352,0.5,0.1],[330,1,0.2],
+    [264,0.25,0.05],[264,0.25,0.05],[297,0.5,0.1],[264,0.5,0.1],[396,0.5,0.1],[352,1,0.2],
+    [264,0.25,0.05],[264,0.25,0.05],[528,0.5,0.1],[440,0.5,0.1],[352,0.5,0.1],[330,0.5,0.1],[297,1,0.2],
+    [470,0.25,0.05],[470,0.25,0.05],[440,0.5,0.1],[352,0.5,0.1],[396,0.5,0.1],[352,1,0.3]
+  ];
+  var t = ac.currentTime + 0.1;
+  notes.forEach(function(n) {
+    var osc  = ac.createOscillator();
+    var gain = ac.createGain();
+    osc.connect(gain);
+    gain.connect(ac.destination);
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(n[0], t);
+    gain.gain.setValueAtTime(0.18, t);
+    gain.gain.exponentialRampToValueAtTime(0.001, t + n[1]);
+    osc.start(t);
+    osc.stop(t + n[1]);
+    t += n[1] + n[2];
+  });
+}
+
 function _tryPlayBg() {
-  _bgAudio.play().catch(function(){});
-  document.removeEventListener('click',  _tryPlayBg);
+  _bgAudio.play().catch(function() {
+    _playFallbackMelody();
+  });
+  document.removeEventListener('click',      _tryPlayBg);
   document.removeEventListener('touchstart', _tryPlayBg);
 }
 document.addEventListener('click',      _tryPlayBg);

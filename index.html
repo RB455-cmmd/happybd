@@ -374,6 +374,23 @@
 var TEXTMSG = "عيد ميلاد سعيد! كل عام وأنت بألف خير 🎂✨";
 /* ══════════════════════════════════════ */
 
+/* ★  BACKGROUND SONG / SOUND EFFECT  ★
+   Replace the URL below to use a different song or sound.        */
+var SOUNDANDSONG = "song.mp3";
+
+var _bgAudio = new Audio(SOUNDANDSONG);
+_bgAudio.loop   = true;
+_bgAudio.volume = 0.45;
+
+/* Start on first user gesture (browser autoplay policy) */
+function _tryPlayBg() {
+  _bgAudio.play().catch(function(){});
+  document.removeEventListener('click',  _tryPlayBg);
+  document.removeEventListener('touchstart', _tryPlayBg);
+}
+document.addEventListener('click',      _tryPlayBg);
+document.addEventListener('touchstart', _tryPlayBg);
+
 var CANDLE_COLORS = ['#e74c3c','#e67e22','#f1c40f','#2ecc71','#3498db','#9b59b6'];
 var NUM_CANDLES   = 6;
 var blown         = new Array(NUM_CANDLES).fill(false);

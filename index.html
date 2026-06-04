@@ -241,7 +241,7 @@
 <canvas id="bg-canvas"></canvas>
 
 <div class="wrapper">
-  <h1 class="title">🎂 عيد ميلاد سعيد</h1>
+  <h1 class="title">كل عام وانت بألف خير ✨♥️</h1>
 
   <div class="scene">
 
@@ -282,7 +282,7 @@
       </defs>
 
       <!-- ═══ BOTTOM LAYER ═══ -->
-      <rect x="5"  y="112" width="310" height="58" rx="8" fill="#9b2d49"/>
+      <rect x="5"  y="112" width="310" height="58" rx="8" fill="#FFB8CB"/>
       <!-- drip top of bottom layer -->
       <path d="M5,112
                Q22,96  39,112
@@ -294,7 +294,7 @@
                Q226,96 243,112
                Q260,96 277,112
                Q294,96 315,112"
-            fill="none" stroke="#b83558" stroke-width="13" stroke-linecap="round"/>
+            fill="none" stroke="#ffc8d8" stroke-width="13" stroke-linecap="round"/>
       <!-- shine -->
       <rect x="5"  y="112" width="310" height="58" rx="8" fill="url(#shineB)" clip-path="url(#clipB)"/>
       <!-- wave deco -->
@@ -302,7 +302,7 @@
             fill="none" stroke="rgba(255,255,255,.35)" stroke-width="2" stroke-linecap="round"/>
 
       <!-- ═══ MID LAYER ═══ -->
-      <rect x="28" y="60"  width="264" height="52" rx="10" fill="#c0392b"/>
+      <rect x="28" y="60"  width="264" height="52" rx="10" fill="#f0879a"/>
       <!-- drip top of mid layer -->
       <path d="M28,60
                Q44,45  60,60
@@ -313,7 +313,7 @@
                Q204,45 220,60
                Q236,45 252,60
                Q268,45 292,60"
-            fill="none" stroke="#d94f3a" stroke-width="13" stroke-linecap="round"/>
+            fill="none" stroke="#f9a0b0" stroke-width="13" stroke-linecap="round"/>
       <!-- shine -->
       <rect x="28" y="60"  width="264" height="52" rx="10" fill="url(#shineM)" clip-path="url(#clipM)"/>
       <!-- wave deco -->
@@ -321,7 +321,7 @@
             fill="none" stroke="rgba(255,220,100,.45)" stroke-width="2" stroke-linecap="round"/>
 
       <!-- ═══ TOP LAYER ═══ -->
-      <rect x="55" y="14"  width="210" height="46" rx="14" fill="#e8577a"/>
+      <rect x="55" y="14"  width="210" height="46" rx="14" fill="#f4728a"/>
       <!-- drip top of top layer -->
       <path d="M55,14
                Q72,0   89,14
@@ -330,7 +330,7 @@
                Q174,0  191,14
                Q208,0  225,14
                Q242,0  265,14"
-            fill="none" stroke="#ef7090" stroke-width="13" stroke-linecap="round"/>
+            fill="none" stroke="#f98fa3" stroke-width="13" stroke-linecap="round"/>
       <!-- shine -->
       <rect x="55" y="14"  width="210" height="46" rx="14" fill="url(#shineT)" clip-path="url(#clipT)"/>
       <!-- wave deco -->
@@ -352,16 +352,11 @@
 
     <!-- CONTROLS -->
     <div class="controls" id="controls">
-      <button class="btn-blow" id="mic-btn" onclick="startListen()">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-             stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 2a3 3 0 0 1 3 3v7a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3z"/>
-          <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
-          <line x1="12" y1="19" x2="12" y2="22"/>
-        </svg>
-        <span id="btn-label">انفخ الشمعات! 🎤</span>
+      <button class="btn-blow" onclick="showMessage()">
+
+        <span id="btn-label">🎉 عيد ميلاد!</span>
       </button>
-      <p class="hint" id="hint-text">انقر واستمر بالنفخ في الميكروفون،<br>أو انقر على كل شمعة لإطفائها</p>
+      <p class="hint" id="hint-text">انقر على الشمعات لإطفائها</p>
     </div>
 
   </div><!-- /scene -->
@@ -371,7 +366,7 @@
 /* ══════════════════════════════════════
    ★  EDIT YOUR MESSAGE HERE  ★
 ══════════════════════════════════════ */
-var TEXTMSG = "عيد ميلاد سعيد! كل عام وأنت بألف خير 🎂✨";
+var TEXTMSG = "كل سنة وانت بألف خير يروحي ❤️ بتمنالك أجمل سنة وأحلى أيام الله يخليلي ياك ونقضي كل ايامنا سوا وتحقق كل اللي بتتمناه بحبك كتيير 🎂✨";
 /* ══════════════════════════════════════ */
 
 /* ★  BACKGROUND SONG / SOUND EFFECT  ★
@@ -479,7 +474,6 @@ function blowCandle(i) {
 function showMessage() {
   if (allBlown) return;
   allBlown = true;
-  stopListen();
   document.getElementById('controls').style.display = 'none';
   document.getElementById('msg-text').textContent = TEXTMSG;
   document.getElementById('msg-box').style.display = 'block';
@@ -539,7 +533,7 @@ function stopListen() {
   var btn = document.getElementById('mic-btn');
   if (btn) {
     btn.classList.remove('listening');
-    document.getElementById('btn-label').textContent = 'انفخ الشمعات! 🎤';
+    document.getElementById('btn-label').textContent = '🎉 عيد ميلاد!';
   }
   var hint = document.getElementById('hint-text');
   if (hint) hint.textContent = 'انقر واستمر بالنفخ في الميكروفون، أو انقر على كل شمعة لإطفائها';
